@@ -27,3 +27,6 @@ package-lock.json
 newrelic**
 
 service_account.json
+
+# rust
+**/target/
