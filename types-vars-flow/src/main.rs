@@ -199,12 +199,12 @@ fn combination_lock() {
 }
 
 fn main() {
-    // fundamental_data_types();
-    // operators();
-    // scope_and_shadowing();
-    // sh::stack_and_heap();
-    // control_flow();
-    // loops();
-    // match_statement();
-    // combination_lock();
+    fundamental_data_types();
+    operators();
+    scope_and_shadowing();
+    sh::stack_and_heap();
+    control_flow();
+    loops();
+    match_statement();
+    combination_lock();
 }
