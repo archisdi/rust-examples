@@ -173,6 +173,71 @@ fn generics() {
     // let my_line: Line<i32> = Line { start: a, end: b };
 }
 
+fn strings() {
+    let s: &'static str = "hello there!"; // cannot be mutated nor dropped, lives for the entire program
+
+    for c in s.chars().rev() { // reverse iterator over characters
+        println!("{}", c);
+    }
+
+    if let Some(first_char) = s.chars().nth(0) { // Option, first character of string
+        println!("first letter is {}", first_char);
+    }
+
+    // String - growable, heap-allocated data structure
+    let mut letters = String::new();
+    let mut a = 'a' as u8;
+    while a <= ('z' as u8) {
+        letters.push(a as char);
+        letters.push_str(", ");
+        a += 1;
+    }
+    println!("{}", letters);
+
+    // &str <> String
+    let u: &str = &letters; // convert String to &str, dereference coercion
+
+    // concatenation
+    let z = letters + "abc"; // takes ownership of letters
+
+    let mut abc = "Hello world".to_string(); // String from &str
+    abc.remove(0);
+    abc.push_str("!!!");
+    println!("{}", abc.replace("ello", "goodbye"));
+
+    // String formating
+    let name = "John";
+    let greeting = format!("Hi, I'm {}, nice to meet you", name);
+    println!("{}", greeting);
+
+    let hello_rust = format!("{}, {}", "Hello", "Rust");
+    println!("{}", hello_rust);
+
+    // positional arguments to format string
+    let run = "run";
+    let forest = "forest";
+    let rfr = format!("{0}, {1}, {0}", run, forest);
+    println!("{}", rfr);
+
+    // named arguments
+    let info = format!(
+        "the name's {last}. {first} {last}.",
+        first = "James",
+        last = "Bond"
+    );
+    println!("{}", info);
+
+    // mixed positional and named arguments
+    let mixed = format!(
+        "{1} {} {last}",
+        "Bond",
+        first = "James",
+        last = "Bond"
+    );
+    println!("{}", mixed);
+
+}
+
 fn main() {
     structures();
     enumns();
@@ -183,4 +248,5 @@ fn main() {
     tuples();
     pm::pattern_matching();
     generics();
+    strings();
 }
