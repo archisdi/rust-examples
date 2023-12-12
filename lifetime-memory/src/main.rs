@@ -1,3 +1,4 @@
+use core::time;
 #[allow(dead_code)]
 #[allow(unused_imports)]
 
@@ -86,4 +87,20 @@ fn main() {
 
     // --- Rc
     rc_demo();
+
+    // --- Threads
+    let handle = thread::spawn(|| {
+        for _ in 0..10 {
+            print!("+");
+            thread::sleep(time::Duration::from_millis(500));
+        }
+    });
+    
+    for _ in 0..10 {
+        print!("-");
+        thread::sleep(time::Duration::from_millis(300));
+    }
+
+    handle.join();
+
 }
